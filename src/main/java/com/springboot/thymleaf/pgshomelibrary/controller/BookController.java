@@ -8,11 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-import javax.validation.constraints.Null;
 import java.util.List;
 
 @Controller
@@ -43,4 +42,16 @@ public class BookController {
             return "view/books";
         }
     }
+
+    @GetMapping(value = "/getBook/{id}")
+    public String getBook(@PathVariable Integer id, Model model) {
+        Book book = bookService.findById(id);
+        List<Book> books = bookService.getAllBooks();
+        model.addAttribute("books", books);
+        model.addAttribute("book", book);
+        model.addAttribute("pageTitle", "Edit Book");
+        model.addAttribute("isAdd", false);
+        return "view/books";
+    }
+
 }

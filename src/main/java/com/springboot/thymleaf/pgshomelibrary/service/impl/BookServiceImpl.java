@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,5 +29,13 @@ public class BookServiceImpl implements BookService {
         return bookRepository.save(book);
     }
 
-
+    @Override
+    public Book findById(Integer id) {
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isPresent()) {
+            return book.get();
+        }else{
+            return null;
+        }
+    }
 }
