@@ -54,4 +54,17 @@ public class BookController {
         return "view/books";
     }
 
+    @PostMapping(value = "/update")
+    public String update(@ModelAttribute Book book, RedirectAttributes redirectAttributes, Model model) {
+        Book dbBook = bookService.update(book);
+        if (dbBook != null) {
+            redirectAttributes.addFlashAttribute("successmsg", "Book was Updated successfully");
+            return "redirect:/";
+        } else {
+            model.addAttribute("errormsg", "Book is not update, try again");
+            model.addAttribute("book", book);
+            return "view/books";
+        }
+    }
+
 }

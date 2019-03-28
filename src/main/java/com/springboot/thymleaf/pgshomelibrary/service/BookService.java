@@ -11,4 +11,6 @@ public interface BookService {
     Book save(Book book);
 
     Book findById(Integer id);
+
+    Book update(Book book);
 }
