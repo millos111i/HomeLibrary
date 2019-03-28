@@ -13,4 +13,6 @@ public interface BookService {
     Book findById(Integer id);
 
     Book update(Book book);
+
+    void delete(Integer id);
 }

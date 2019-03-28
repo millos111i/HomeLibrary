@@ -67,4 +67,11 @@ public class BookController {
         }
     }
 
+    @GetMapping(value = "/deleteBook/{id}")
+    public String deleteBook(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        bookService.delete(id);
+        redirectAttributes.addFlashAttribute("successmsg", "Book was Deleted successfully");
+        return "redirect:/";
+    }
+
 }
